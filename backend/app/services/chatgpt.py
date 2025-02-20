@@ -1,8 +1,16 @@
 import os
-from typing import Dict, List
+import time
+from typing import Dict, List, Optional
 from openai import OpenAI
+from dotenv import load_dotenv
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+load_dotenv()
+
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("OPENAI_API_KEY environment variable is not set")
+
+client = OpenAI(api_key=api_key)
 
 def generate_deep_research_prompt(ticker: str) -> str:
     """Generate a comprehensive research prompt for stock analysis"""
@@ -187,11 +195,3 @@ def generate_insight(data: Dict | List, context: Dict) -> str:
         return insight
     except Exception as e:
         return f"Error generating insight: {str(e)}"
-
-# Endpoint-specific prompt templates
-CONGRESS_TRADES_PROMPT = """Analyze Congress member trading activity"""
-GREEK_FLOW_PROMPT = """Analyze the options Greek flow data"""
-EARNINGS_PROMPT = """Analyze earnings reports and market reactions"""
-INSIDER_TRADING_PROMPT = """Analyze insider trading patterns and implications"""
-PREMIUM_FLOW_PROMPT = """Analyze market-wide premium flow data"""
-MARKET_TIDE_PROMPT = """Analyze market-wide trends and sentiment"""
