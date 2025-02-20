@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "stock-analysis-api"
+version = "0.1.0"
+description = "Stock Analysis API with AI-powered insights"
+authors = ["Devin AI <devin@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.109.2"
+uvicorn = "^0.27.1"
+openai = "^1.12.0"
+yfinance = "^0.2.36"
+pandas = "^2.2.0"
+numpy = "^1.26.4"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
